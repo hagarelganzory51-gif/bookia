@@ -1,0 +1,65 @@
+import 'package:bookia/feature/auth/presntaion/forgetpassword/page/forget_screen.dart';
+import 'package:bookia/feature/auth/presntaion/login/page/login_screen.dart';
+import 'package:bookia/feature/auth/presntaion/new%20password/page/newpassword_screen.dart';
+import 'package:bookia/feature/auth/presntaion/otp/page/otp_screen.dart';
+import 'package:bookia/feature/auth/presntaion/password%20change/page/passwordchange_screen.dart';
+import 'package:bookia/feature/auth/presntaion/register/page/register_screen.dart';
+import 'package:bookia/feature/splash/splash_screen.dart';
+import 'package:bookia/feature/welcome/welcome_csreen.dart';
+import 'package:go_router/go_router.dart';
+
+class Routes{
+static const String splashScreen="/";
+static const String welcome="/welcome";
+static const String login="/login";
+static const String register="/register";
+static const String forget="/forget";
+static const String otp="/otp";
+static const String newpassword="/newpassword";
+static const String passwordchange="/passwordchange";
+
+
+
+   static GoRouter routes= GoRouter(routes: [
+    GoRoute(
+      path:splashScreen,
+      builder: (context, state) => const SplashScreen()),
+
+      GoRoute(
+      path:welcome,
+      builder: (context, state) => const WelcomeCsreen()),
+
+      GoRoute(
+      path:login,
+      builder: (context, state) => const  LoginScreen()),
+
+      GoRoute(
+      path:register,
+      builder: (context, state) => const RegisterScreen()),
+
+
+    GoRoute(
+      path:forget,
+      builder: (context, state) => const ForgetScreen ()),
+
+      GoRoute(
+      path: otp,
+      builder: (context, state) => const OtpScreen()),
+
+      GoRoute(
+      path:newpassword,
+      builder: (context, state) => const NewpasswordScreen()),
+
+      GoRoute(
+      path:passwordchange,
+      builder: (context, state) => const PasswordchangeScreen()),
+
+
+
+
+
+      
+   ]);
+
+   
+}
