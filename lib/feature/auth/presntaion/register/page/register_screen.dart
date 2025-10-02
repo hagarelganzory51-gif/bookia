@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             hint: "enter your password",
           ),
           Gap(30),
-          MainButton(text: "RegisterScreen", onPressed: (){}),
+          MainButton(text: "Register", onPressed: (){}),
          
           
         ],

@@ -35,7 +35,9 @@ class WelcomeCsreen extends StatelessWidget {
                Spacer(flex: 5,),
           
               MainButton(
-                text: "login", onPressed: (){}),
+                text: "login", onPressed: (){
+                  pushTo(context, Routes.login);
+                }),
               Gap(10),
               MainButton(
                 bordercolor: Appcolors.blackcolor,
