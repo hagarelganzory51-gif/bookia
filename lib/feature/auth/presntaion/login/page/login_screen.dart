@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBarWithBack() ,
-      body: _bulidLoginBody(),bottomNavigationBar: Row(
+      body: _bulidLoginBody(),
+      bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("don't have an acction ?", style: TextStyles.styleSize14(),),
