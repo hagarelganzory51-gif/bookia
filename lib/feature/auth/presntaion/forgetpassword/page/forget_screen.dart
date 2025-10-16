@@ -16,63 +16,60 @@ class ForgetScreen extends StatefulWidget {
 }
 
 class _ForgetScreenState extends State<ForgetScreen> {
-TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBarWithBack() ,
+      appBar: AppBarWithBack(),
       body: _buildForgetBody(),
 
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Remember Password? ", style: TextStyles.styleSize14(),),
-          TextButton(onPressed: (){
-            pushWithReplacement(context, Routes.login);
-
-          }, 
-          child: Text("Login",style: TextStyles.styleSize14(color: Appcolors.primarycolor),))
+          Text("Remember Password? ", style: TextStyles.styleSize14()),
+          TextButton(
+            onPressed: () {
+              pushWithReplacement(context, Routes.login);
+            },
+            child: Text(
+              "Login",
+              style: TextStyles.styleSize14(color: Appcolors.primarycolor),
+            ),
+          ),
         ],
       ),
-
     );
   }
-  
-   Padding _buildForgetBody() {
+
+  Padding _buildForgetBody() {
     return Padding(
-      padding: 
-    const EdgeInsets.all(22),
-    child:SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            "Forgot Password?",
-            style: TextStyles.styleSize30(),
-          ),
-          Gap(12),
-          Text("Don't worry! It occurs. Please enter the email address linked with your account.",
-          style: TextStyles.styleSize16(color: Appcolors.grycolor),
-          ),
-          Gap(30),
-          CustomTextField(
-            controller: emailController,
-            hint: "enter your email",
-          ),
+      padding: const EdgeInsets.all(22),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("Forgot Password?", style: TextStyles.styleSize30()),
+            Gap(12),
+            Text(
+              "Don't worry! It occurs. Please enter the email address linked with your account.",
+              style: TextStyles.styleSize16(color: Appcolors.grycolor),
+            ),
             Gap(30),
-          
-          MainButton(text: " send code", onPressed: (){
-            pushTo(context, Routes.otp);
-          }),
-          
-        
-        ],
+            CustomTextField(
+              controller: emailController,
+              hint: "enter your email",
+            ),
+            Gap(30),
+
+            MainButton(
+              text: " send code",
+              onPressed: () {
+                pushTo(context, Routes.otp);
+              },
+            ),
+          ],
+        ),
       ),
-    ) ,
     );
   }
 }
-
-
-
-

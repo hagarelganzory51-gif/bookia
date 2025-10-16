@@ -15,91 +15,93 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBarWithBack() ,
+      appBar: AppBarWithBack(),
       body: _buildOtpBody(),
 
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Didn’t received code?  ", style: TextStyles.styleSize14(),),
-          TextButton(onPressed: (){
-            pushWithReplacement(context, Routes.forget);
-
-          }, 
-          child: Text("Resend",style: TextStyles.styleSize14(color: Appcolors.primarycolor),))
+          Text("Didn’t received code?  ", style: TextStyles.styleSize14()),
+          TextButton(
+            onPressed: () {
+              pushWithReplacement(context, Routes.forget);
+            },
+            child: Text(
+              "Resend",
+              style: TextStyles.styleSize14(color: Appcolors.primarycolor),
+            ),
+          ),
         ],
       ),
-
     );
   }
-  
-   Padding _buildOtpBody() {
+
+  Padding _buildOtpBody() {
     return Padding(
-      padding: 
-    const EdgeInsets.all(22),
-    child:SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            "OTP Verification",
-            style: TextStyles.styleSize30(),
-          ),
-          Gap(12),
-          Text("Enter the verification code we just sent on your email address.",
-          style: TextStyles.styleSize16(color: Appcolors.grycolor),
-          ),
-          Gap(30),
+      padding: const EdgeInsets.all(22),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("OTP Verification", style: TextStyles.styleSize30()),
+            Gap(12),
+            Text(
+              "Enter the verification code we just sent on your email address.",
+              style: TextStyles.styleSize16(color: Appcolors.grycolor),
+            ),
+            Gap(30),
 
-          Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: List.generate(4, (index) {
-    return SizedBox(
-      width: 60,
-      child: TextField(
-        textAlign: TextAlign.center,
-        keyboardType: TextInputType.number,
-        maxLength: 1,
-        decoration: InputDecoration(
-          counterText: "",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Appcolors.primarycolor, width: 2),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Appcolors.primarycolor, width: 2),
-            borderRadius: BorderRadius.circular(8),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(4, (index) {
+                return SizedBox(
+                  width: 60,
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    decoration: InputDecoration(
+                      counterText: "",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Appcolors.primarycolor,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Appcolors.primarycolor,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    onChanged: (value) {
+                      if (value.isNotEmpty && index < 3) {
+                        FocusScope.of(context).nextFocus();
+                      }
+                    },
+                  ),
+                );
+              }),
+            ),
+
+            Gap(30),
+            MainButton(
+              text: " Verify",
+              onPressed: () {
+                pushTo(context, Routes.passwordchange);
+              },
+            ),
+          ],
         ),
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        onChanged: (value) {
-          if (value.isNotEmpty && index < 3) {
-            FocusScope.of(context).nextFocus(); 
-          }
-        },
       ),
-    );
-  }),
-),
-
-
-          Gap(30),
-          MainButton(text: " Verify", onPressed: (){
-            pushTo(context, Routes.passwordchange);
-          }),
-          
-        
-        ],
-      ),
-    ) ,
     );
   }
 }
-
-
-
-

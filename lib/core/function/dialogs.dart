@@ -2,7 +2,6 @@ import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
-
 showErrorDialog(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
@@ -18,6 +17,11 @@ showErrorDialog(BuildContext context, String message) {
     ),
   );
 }
-
-
- 
+showLoadingDialog(BuildContext context){
+  showDialog(
+    context:context,
+  builder:(context){
+    return Center(child: CircularProgressIndicator(),);
+  }
+   );
+}

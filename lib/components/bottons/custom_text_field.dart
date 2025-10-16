@@ -28,9 +28,7 @@ class CustomTextField extends StatelessWidget {
       readOnly: readOnly,
       maxLines: maxLines,
       onTap: onTap,
-      decoration: InputDecoration(
-        
-        hintText: hint, suffixIcon: suffixIcon),
+      decoration: InputDecoration(hintText: hint, suffixIcon: suffixIcon),
     );
   }
 }

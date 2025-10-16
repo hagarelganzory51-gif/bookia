@@ -2,7 +2,6 @@ import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
-
 class MainButton extends StatelessWidget {
   const MainButton({
     super.key,
@@ -11,10 +10,9 @@ class MainButton extends StatelessWidget {
     this.height = 55,
     this.width = double.infinity,
     this.margin = EdgeInsets.zero,
-    this.bgcolor=Appcolors.primarycolor,
+    this.bgcolor = Appcolors.primarycolor,
     this.bordercolor,
     this.textcolor,
-    
   });
   final String text;
   final Function() onPressed;
@@ -22,8 +20,8 @@ class MainButton extends StatelessWidget {
   final double width;
   final EdgeInsetsGeometry margin;
   final Color bgcolor;
-   final Color? bordercolor;
-   final Color? textcolor;
+  final Color? bordercolor;
+  final Color? textcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +32,17 @@ class MainButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: bgcolor,
-          side: bordercolor!=null? 
-          BorderSide(color: bordercolor?? Appcolors.blackcolor):
-           BorderSide.none  ,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          side: bordercolor != null
+              ? BorderSide(color: bordercolor ?? Appcolors.blackcolor)
+              : BorderSide.none,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: onPressed,
         child: Text(
           text,
           style: TextStyles.styleSize16(
             fontWeight: FontWeight.w500,
-            color:textcolor?? Appcolors.whitecolor,
+            color: textcolor ?? Appcolors.whitecolor,
           ),
         ),
       ),

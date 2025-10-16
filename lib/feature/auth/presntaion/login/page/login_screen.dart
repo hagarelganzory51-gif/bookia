@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -20,22 +19,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var emailcontroller =TextEditingController();
-  var passwordcontroller =TextEditingController();
+  var emailcontroller = TextEditingController();
+  var passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBarWithBack() ,
+      appBar: AppBarWithBack(),
       body: _bulidLoginBody(),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("don't have an acction ?", style: TextStyles.styleSize14(),),
-          TextButton(onPressed: (){
-            pushWithReplacement(context, Routes.register);
-
-          }, 
-          child: Text("sign up ",style: TextStyles.styleSize14(color: Appcolors.primarycolor),))
+          Text("don't have an acction ?", style: TextStyles.styleSize14()),
+          TextButton(
+            onPressed: () {
+              pushWithReplacement(context, Routes.register);
+            },
+            child: Text(
+              "sign up ",
+              style: TextStyles.styleSize14(color: Appcolors.primarycolor),
+            ),
+          ),
         ],
       ),
     );
@@ -43,52 +46,51 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Padding _bulidLoginBody() {
     return Padding(
-      padding: 
-    const EdgeInsets.all(22),
-    child:SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            "welcome back! gold to see you, again!",
-            style: TextStyles.styleSize30(),
-          ),
-          Gap(30),
-          CustomTextField(
-            controller: emailcontroller,
-            hint: "enter your email",
-          ),
-           Gap(12),
-          CustomTextField(
-            controller: passwordcontroller,
-            hint: "enter your password",
-            suffixIcon: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(AppImages.eyeSvg),
-              ],
+      padding: const EdgeInsets.all(22),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              "welcome back! gold to see you, again!",
+              style: TextStyles.styleSize30(),
             ),
-          ),
+            Gap(30),
+            CustomTextField(
+              controller: emailcontroller,
+              hint: "enter your email",
+            ),
+            Gap(12),
+            CustomTextField(
+              controller: passwordcontroller,
+              hint: "enter your password",
+              suffixIcon: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [SvgPicture.asset(AppImages.eyeSvg)],
+              ),
+            ),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                style: TextButton.styleFrom(overlayColor: Colors.transparent,
-                padding: EdgeInsets.all(0)),
-                onPressed: (){},
+                style: TextButton.styleFrom(
+                  overlayColor: Colors.transparent,
+                  padding: EdgeInsets.all(0),
+                ),
+                onPressed: () {},
                 child: Text(
                   "forget password?",
                   style: TextStyles.styleSize16(),
                 ),
               ),
             ),
-      
-          Gap(20),
-          MainButton(text: "login", onPressed: (){}),
-          Gap(20),
-           SocialLogin(),
-        ],
+
+            Gap(20),
+            MainButton(text: "login", onPressed: () {}),
+            Gap(20),
+            SocialLogin(),
+          ],
+        ),
       ),
-    ) ,
     );
   }
 }

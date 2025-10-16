@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,15 +15,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-   void  initState() {
-    Future.delayed( const Duration(seconds: 3),(){
-   // ignore: use_build_context_synchronously
-   pushWithReplacement(context, Routes.welcome);
-   });
+  void initState() {
+    Future.delayed(const Duration(seconds: 3), () {
+      // ignore: use_build_context_synchronously
+      pushWithReplacement(context, Routes.welcome);
+    });
     super.initState();
-   }
-
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          SvgPicture.asset(AppImages.logoSvg,width: 220,),
+            SvgPicture.asset(AppImages.logoSvg, width: 220),
             Gap(10),
-            Text(
-            "order your book now!",
-            style:TextStyles.styleSize18()),
+            Text("order your book now!", style: TextStyles.styleSize18()),
           ],
         ),
       ),
     );
   }
-
 }

@@ -3,10 +3,9 @@ import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
-
 class AppTheme {
-     static get lightTheme => ThemeData(
-    scaffoldBackgroundColor:Appcolors.whitecolor,
+  static get lightTheme => ThemeData(
+    scaffoldBackgroundColor: Appcolors.whitecolor,
     fontFamily: AppFonts.dmsheifFamily,
     appBarTheme: AppBarTheme(
       backgroundColor: Appcolors.whitecolor,
@@ -18,11 +17,11 @@ class AppTheme {
       onSurface: Appcolors.blackcolor,
     ),
     dividerTheme: DividerThemeData(color: Appcolors.bordercolor),
-    
+
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Appcolors.accentcolor,
       filled: true,
-      hintStyle: TextStyles.styleSize14(color:Appcolors.grycolor),
+      hintStyle: TextStyles.styleSize14(color: Appcolors.grycolor),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Appcolors.bordercolor),
@@ -42,6 +41,3 @@ class AppTheme {
     ),
   );
 }
-
-    
-    

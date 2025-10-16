@@ -16,57 +16,43 @@ class NewpasswordScreen extends StatefulWidget {
 }
 
 class _NewpasswordScreenState extends State<NewpasswordScreen> {
-TextEditingController newController = TextEditingController();
-TextEditingController confirmController = TextEditingController();
-
+  TextEditingController newController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:AppBarWithBack() ,
-      body: _buildNewPasswordBody()
-    );
+    return Scaffold(appBar: AppBarWithBack(), body: _buildNewPasswordBody());
   }
-  
-   Padding _buildNewPasswordBody() {
+
+  Padding _buildNewPasswordBody() {
     return Padding(
-      padding: 
-    const EdgeInsets.all(22),
-    child:SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            "Create new password",
-            style: TextStyles.styleSize30(),
-          ),
-          Gap(12),
-          Text("Your new password must be unique from those previously used.",
-          style: TextStyles.styleSize16(color: Appcolors.grycolor),
-          ),
-          Gap(30),
-          CustomTextField(
-            controller: newController,
-            hint: "New Password",
-          ),
-          Gap(30),
-          CustomTextField(
-            controller: confirmController,
-            hint: "Confirm Password",
-          ),
+      padding: const EdgeInsets.all(22),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("Create new password", style: TextStyles.styleSize30()),
+            Gap(12),
+            Text(
+              "Your new password must be unique from those previously used.",
+              style: TextStyles.styleSize16(color: Appcolors.grycolor),
+            ),
             Gap(30),
-               MainButton(text: " Reset Password", onPressed: (){
-            pushTo(context, Routes.passwordchange);
-          }),
-          
-          
-        
-        ],
+            CustomTextField(controller: newController, hint: "New Password"),
+            Gap(30),
+            CustomTextField(
+              controller: confirmController,
+              hint: "Confirm Password",
+            ),
+            Gap(30),
+            MainButton(
+              text: " Reset Password",
+              onPressed: () {
+                pushTo(context, Routes.passwordchange);
+              },
+            ),
+          ],
+        ),
       ),
-    ) ,
     );
   }
 }
-
-
-
-
