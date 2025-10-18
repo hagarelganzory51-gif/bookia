@@ -24,8 +24,33 @@ class AuthCubit extends Cubit<AuthState> {
     if(res!=null){
       emit(AuthSuccesState());
     }else{
-      emit(AuthErrorState());
+      emit(AuthErrorState(message: "registeation failed !"));
     }
-
   }
+  login() async {
+    emit(AuthLoadingState());
+    var res =await AuthRepo.login(AuthParams(
+      email: emailcontroller.text,
+      password: passwordcontroller.text,
+      
+    ));
+    if(res!=null){
+      emit(AuthSuccesState());
+    }else{
+      emit(AuthErrorState(message: "login failed !"));
+    }
+  }
+
+  forgetPassword() async {
+    emit(AuthLoadingState());
+    var res =await AuthRepo.forgetPassword(AuthParams(
+      email: emailcontroller.text,
+    ));
+    if(res!=null){
+      emit(AuthSuccesState());
+    }else{
+      emit(AuthErrorState(message: "forgetpassword failed !"));
+    }
+  }
+
 }

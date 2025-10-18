@@ -1,7 +1,4 @@
-
-
 import 'dart:developer';
-
 import 'package:bookia/components/app_bar_with_back.dart';
 import 'package:bookia/components/bottons/custom_text_field.dart';
 import 'package:bookia/components/main_button.dart';
@@ -53,7 +50,7 @@ class RegisterScreen extends StatelessWidget {
          log("succesful");
         }else if(state is AuthErrorState){
           pop(context);
-          showErrorDialog(context, "registretion fail");
+          showErrorDialog(context, state.message);
         }
       },
       child: Padding(

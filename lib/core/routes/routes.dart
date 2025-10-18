@@ -32,7 +32,13 @@ class Routes {
         builder: (context, state) => const WelcomeCsreen(),
       ),
 
-      GoRoute(path: login, builder: (context, state) => const LoginScreen()),
+      GoRoute(
+        path: login,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const LoginScreen(),
+        ),
+      ),
 
       GoRoute(
         path: register,
@@ -42,7 +48,13 @@ class Routes {
         ),
       ),
 
-      GoRoute(path: forget, builder: (context, state) => const ForgetScreen()),
+      GoRoute(
+        path: forget,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const ForgetScreen(),
+        ),
+      ),
 
       GoRoute(path: otp, builder: (context, state) => const OtpScreen()),
 

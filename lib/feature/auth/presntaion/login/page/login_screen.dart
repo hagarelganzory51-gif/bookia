@@ -1,31 +1,30 @@
+import 'dart:developer';
+
 import 'package:bookia/components/app_bar_with_back.dart';
 import 'package:bookia/components/bottons/custom_text_field.dart';
 import 'package:bookia/components/main_button.dart';
 import 'package:bookia/core/contants/app_images.dart';
+import 'package:bookia/core/function/dialogs.dart';
 import 'package:bookia/core/routes/navection.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
+import 'package:bookia/feature/auth/presntaion/cubit/auth_cubit.dart';
+import 'package:bookia/feature/auth/presntaion/cubit/auth_state.dart';
 import 'package:bookia/feature/auth/presntaion/login/widget/sociallogin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  var emailcontroller = TextEditingController();
-  var passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWithBack(),
-      body: _bulidLoginBody(),
+      body: _bulidLoginBody(context),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -44,51 +43,88 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Padding _bulidLoginBody() {
-    return Padding(
-      padding: const EdgeInsets.all(22),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              "welcome back! gold to see you, again!",
-              style: TextStyles.styleSize30(),
-            ),
-            Gap(30),
-            CustomTextField(
-              controller: emailcontroller,
-              hint: "enter your email",
-            ),
-            Gap(12),
-            CustomTextField(
-              controller: passwordcontroller,
-              hint: "enter your password",
-              suffixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [SvgPicture.asset(AppImages.eyeSvg)],
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  overlayColor: Colors.transparent,
-                  padding: EdgeInsets.all(0),
+  Widget _bulidLoginBody(BuildContext context) {
+    var cubit=context.read<AuthCubit>();
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        
+        if(state is AuthLoadingState){
+          showLoadingDialog(context);
+        }else if(state is AuthSuccesState){
+          pop(context);
+         log("succesful");
+        }else if(state is AuthErrorState){
+          pop(context);
+          showErrorDialog(context, state.message);
+        }
+      },
+      
+      child: Padding(
+        padding: const EdgeInsets.all(22),
+        child: SingleChildScrollView(
+          child: Form(
+            key: cubit.formkey,
+            child: Column(
+              children: [
+                Text(
+                  "welcome back! gold to see you, again!",
+                  style: TextStyles.styleSize30(),
                 ),
-                onPressed: () {},
-                child: Text(
-                  "forget password?",
-                  style: TextStyles.styleSize16(),
+                Gap(30),
+                CustomTextField(
+                    
+                  controller: cubit.emailcontroller,
+                  hint: "enter your email",
+                  validator: (value) {
+                    if(value==null||value.isEmpty){
+                      return  "please enter your email";
+                    }
+                    return null;
+                  }
                 ),
-              ),
+                Gap(12),
+                CustomTextField(
+                  controller:cubit. passwordcontroller,
+                  hint: "enter your password",
+                
+                  suffixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [SvgPicture.asset(AppImages.eyeSvg)],
+                  ),
+                    validator: (value) {
+                    if(value==null||value.isEmpty){
+                      return  "please enter your password";
+                    }
+                    return null;
+                  },
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      overlayColor: Colors.transparent,
+                      padding: EdgeInsets.all(0),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "forget password?",
+                      style: TextStyles.styleSize16(),
+                    ),
+                  ),
+                ),
+            
+                Gap(20),
+                MainButton(text: "login", onPressed: () {
+                  if(cubit.formkey.currentState!.validate()){
+                    cubit.login();
+                  }
+                }),
+                Gap(20),
+                SocialLogin(),
+              ],
             ),
-
-            Gap(20),
-            MainButton(text: "login", onPressed: () {}),
-            Gap(20),
-            SocialLogin(),
-          ],
+          ),
         ),
       ),
     );
