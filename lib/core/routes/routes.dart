@@ -5,6 +5,7 @@ import 'package:bookia/feature/auth/presntaion/new%20password/page/newpassword_s
 import 'package:bookia/feature/auth/presntaion/otp/page/otp_screen.dart';
 import 'package:bookia/feature/auth/presntaion/password%20change/page/passwordchange_screen.dart';
 import 'package:bookia/feature/auth/presntaion/register/page/register_screen.dart';
+import 'package:bookia/feature/main/main_app_screen.dart';
 import 'package:bookia/feature/splash/splash_screen.dart';
 import 'package:bookia/feature/welcome/welcome_csreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,7 @@ class Routes {
   static const String otp = "/otp";
   static const String newpassword = "/newpassword";
   static const String passwordchange = "/passwordchange";
+  static const String main = "/main";
 
   static GoRouter routes = GoRouter(
     routes: [
@@ -67,6 +69,8 @@ class Routes {
         path: passwordchange,
         builder: (context, state) => const PasswordchangeScreen(),
       ),
+       GoRoute(path: main, builder: (context, state) => const MainAppScreen()),
+
     ],
   );
 }

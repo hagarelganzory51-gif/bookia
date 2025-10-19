@@ -1,9 +1,8 @@
-import 'dart:developer';
 
 import 'package:bookia/components/app_bar_with_back.dart';
+import 'package:bookia/components/bottons/Password_Text_Field%20.dart';
 import 'package:bookia/components/bottons/custom_text_field.dart';
 import 'package:bookia/components/main_button.dart';
-import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/function/dialogs.dart';
 import 'package:bookia/core/routes/navection.dart';
 import 'package:bookia/core/routes/routes.dart';
@@ -14,7 +13,6 @@ import 'package:bookia/feature/auth/presntaion/cubit/auth_state.dart';
 import 'package:bookia/feature/auth/presntaion/login/widget/sociallogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -51,8 +49,7 @@ class LoginScreen extends StatelessWidget {
         if(state is AuthLoadingState){
           showLoadingDialog(context);
         }else if(state is AuthSuccesState){
-          pop(context);
-         log("succesful");
+        goToBase(context, Routes.main);
         }else if(state is AuthErrorState){
           pop(context);
           showErrorDialog(context, state.message);
@@ -83,15 +80,11 @@ class LoginScreen extends StatelessWidget {
                   }
                 ),
                 Gap(12),
-                CustomTextField(
+                PasswordTextField(
                   controller:cubit. passwordcontroller,
                   hint: "enter your password",
                 
-                  suffixIcon: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [SvgPicture.asset(AppImages.eyeSvg)],
-                  ),
+                  
                     validator: (value) {
                     if(value==null||value.isEmpty){
                       return  "please enter your password";

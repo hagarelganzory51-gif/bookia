@@ -16,6 +16,7 @@ class AppTheme {
       seedColor: Appcolors.primarycolor,
       onSurface: Appcolors.blackcolor,
     ),
+  
     dividerTheme: DividerThemeData(color: Appcolors.bordercolor),
 
     inputDecorationTheme: InputDecorationTheme(
