@@ -1,58 +1,92 @@
-// import 'package:hive/hive.dart';
-// import 'package:taskati/core/models/task_model.dart';
+import 'dart:convert';
 
-// // 1) init hive
-// // 2) create helper class and open your box and take instance of it
-// // 3) create function to put data and get data
-// // 4) use this class and its methods to save and get data
-// //! Note : Not Needed to Call init() Again After First Time !!
+import 'package:bookia/feature/auth/data/model/auth_response/data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// //* Store an object in hive ??
-// // 1) create a model class (TaskModel)
-// // 2) annotation class with @HiveType and its fields with @HiveField`
-// // 3) add build_runner and Hive_generator in pubspec.yaml (dev_dependencies)
-// // 4) run "flutter pub run build_runner build"
-// // 5) register type adapter in main.dart
+class SharedPref{
+static late  SharedPreferences pref;
+static const String kUserData="userData";
+static init() async {
+  pref=await SharedPreferences.getInstance();
+ }
+ static saveUserData(UserModel model)  {
+  //to pares object to map 
+  var json=model.toJson();
 
-// class LocalHelper {
-//   static late Box userBox;
-//   static late Box<TaskModel> taskBox;
+  //to pares map to string use json encode from dart:convert
+  var jsonToString= jsonEncode(json);
+  saveData(kUserData, jsonToString);
 
-//   static String kName = 'name';
-//   static String kImage = 'image';
-//   static String kIsUploaded = 'isUploaded';
-//   static String kIsDark = 'isDark';
+ }
+  static UserModel? getUserData(){
+  String? stringData=getData(kUserData);
+  if(stringData==null){
+    return null;
+  }
+  //to parse string to map use json decode from dart:convert
+  var stringTojson=jsonDecode(stringData);
+  //to parse map to object
+    return  UserModel.fromJson(stringTojson);
+ 
+ }
 
-//   static init() async {
-//     Hive.registerAdapter<TaskModel>(TaskModelAdapter());
-//     userBox = await Hive.openBox('userBox');
-//     taskBox = await Hive.openBox<TaskModel>('taskBox');
-//   }
 
-//   static putData(String key, dynamic value) {
-//     userBox.put(key, value);
-//   }
+//  setInt(String key, int value) async {
+//  await pref.setInt(key, value);
+//  }
+//  int?getInt(String key){
+//   return pref.getInt(key);
+//  }
+//  setstring(String key, String value) async {
+//  await pref.setString(key, value);
+//  }
+//  String?getstring(String key){
+//   return pref.getString(key);
+//  }
+//  setbool(String key, bool value) async {
+//  await pref.setBool(key, value);
+//  }
+//  bool?getbool(String key){
+//   return pref.getBool(key);
+//  }
+//  setDouble(String key, double value) async {
+//  await pref.setDouble(key, value);
+//  }
+//  double?getDouble(String key){
+//   return pref.getDouble(key);
+//  }
+//  remove (String key) async{
+//   await pref.remove(key);
+//  }
+///////////////////// بدل ما نعمل دا كله فيه حل اسهل/////////////////////
+ static  saveData(String key,dynamic value) async {
+  if(value is int){
+   await pref.setInt(key, value);
+  }
+  if(value is String){
+   await pref.setString(key, value);
+  }
+  if(value is bool){
+   await pref.setBool(key, value);
+  }
+  if(value is double){
+   await pref.setDouble(key, value);
+  }
+ }
+ static dynamic getData(String key){
+  return pref.get(key);
+ }
+  static  removeData (String key) async{
+    await pref.remove(key);
+  }
 
-//   static getData(String key) {
-//     return userBox.get(key);
-//   }
 
-//   static putTask(String key, TaskModel value) {
-//     taskBox.put(key, value);
-//   }
+}
 
-//   static TaskModel? getTask(String key) {
-//     return taskBox.get(key);
-//   }
 
-//   static putUserData(String name, String image) {
-//     putData(kName, name);
-//     putData(kImage, image);
-//     putData(kIsUploaded, true);
-//   }
 
-//   static changeTheme(){
-//     bool cachedTheme = userBox.get(kIsDark) ?? false;
-//     userBox.put(kIsDark, !cachedTheme);
-//   }
-// }
+
+
+
+
+

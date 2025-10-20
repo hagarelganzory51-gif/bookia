@@ -1,5 +1,6 @@
 import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/utils/colors.dart';
+import 'package:bookia/feature/home/presentation/pages/home_screem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,10 +16,8 @@ class _MainAppScreenState extends State<MainAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: HomeScreem(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Appcolors.accentcolor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
@@ -32,7 +31,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
           ,"home"
         ),
         _buildNavBaritem(
-          AppImages.backSvg
+          AppImages.bookmarkSvg
           ,"bookmark"
         ),
         _buildNavBaritem(

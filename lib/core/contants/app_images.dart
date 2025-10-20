@@ -7,7 +7,7 @@ class AppImages {
   static const String welcome = "assets/images/welcome.png";
 
   static const String backSvg = "assets/icons/back.svg";
-  static const String bookmark = "assets/icons/Bookmark.png";
+  static const String bookmarkSvg = "assets/icons/Bookmark.svg";
   static const String cameraSvg = "assets/icons/camera.svg";
   static const String cartSvg = "assets/icons/cart.svg";
   static const String eyeSvg = "assets/icons/eye.svg";

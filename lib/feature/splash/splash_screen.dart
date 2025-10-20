@@ -1,6 +1,7 @@
 import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/routes/navection.dart';
 import 'package:bookia/core/routes/routes.dart';
+import 'package:bookia/core/services/local/local_helper.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,9 +17,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    var userData=SharedPref.getUserData();
     Future.delayed(const Duration(seconds: 3), () {
+      if(userData!=null){
+        // ignore: use_build_context_synchronously
+        pushWithReplacement(context, Routes.main);
+      }else{
       // ignore: use_build_context_synchronously
-      pushWithReplacement(context, Routes.welcome);
+      pushWithReplacement(context, Routes.welcome);}
     });
     super.initState();
   }
