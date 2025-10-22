@@ -4,18 +4,22 @@ import 'package:dio/dio.dart';
 class DioProvider {
   static late Dio dio;
   static init() {
-    dio = Dio(BaseOptions(baseUrl: ApiEndpoint.basurl,
-    connectTimeout: Duration(seconds: 2)));
+    dio = Dio(
+      BaseOptions(
+        baseUrl: ApiEndpoint.basurl,
+        connectTimeout: Duration(seconds: 2),
+      ),
+    );
   }
 
   static Future<Response> post({
-    required String path,
+    required String endpoint,
     Object? data,
     Map<String, dynamic>? queryparameters,
     Map<String, dynamic>? headers,
   }) async {
     return await dio.post(
-      path,
+      endpoint,
       data: data,
       queryParameters: queryparameters,
       options: Options(headers: headers),
@@ -23,13 +27,13 @@ class DioProvider {
   }
 
   static Future<Response> get({
-    required String path,
+    required String endpoint,
     Object? data,
     Map<String, dynamic>? queryparameters,
     Map<String, dynamic>? headers,
   }) async {
-    return await dio.post(
-      path,
+    return await dio.get(
+      endpoint,
       data: data,
       queryParameters: queryparameters,
       options: Options(headers: headers),
@@ -42,7 +46,7 @@ class DioProvider {
     Map<String, dynamic>? queryparameters,
     Map<String, dynamic>? headers,
   }) async {
-    return await dio.post(
+    return await dio.put(
       endpoint,
       data: data,
       queryParameters: queryparameters,
@@ -56,7 +60,7 @@ class DioProvider {
     Map<String, dynamic>? queryparameters,
     Map<String, dynamic>? headers,
   }) async {
-    return await dio.post(
+    return await dio.delete(
       endpoint,
       data: data,
       queryParameters: queryparameters,
@@ -70,7 +74,7 @@ class DioProvider {
     Map<String, dynamic>? queryparameters,
     Map<String, dynamic>? headers,
   }) async {
-    return await dio.post(
+    return await dio.patch(
       endpoint,
       data: data,
       queryParameters: queryparameters,

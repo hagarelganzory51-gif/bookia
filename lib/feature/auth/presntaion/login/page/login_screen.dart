@@ -1,4 +1,3 @@
-
 import 'package:bookia/components/app_bar_with_back.dart';
 import 'package:bookia/components/bottons/Password_Text_Field%20.dart';
 import 'package:bookia/components/bottons/custom_text_field.dart';
@@ -42,20 +41,19 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _bulidLoginBody(BuildContext context) {
-    var cubit=context.read<AuthCubit>();
+    var cubit = context.read<AuthCubit>();
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        
-        if(state is AuthLoadingState){
+        if (state is AuthLoadingState) {
           showLoadingDialog(context);
-        }else if(state is AuthSuccesState){
-        goToBase(context, Routes.main);
-        }else if(state is AuthErrorState){
+        } else if (state is AuthSuccesState) {
+          goToBase(context, Routes.main);
+        } else if (state is AuthErrorState) {
           pop(context);
           showErrorDialog(context, state.message);
         }
       },
-      
+
       child: Padding(
         padding: const EdgeInsets.all(22),
         child: SingleChildScrollView(
@@ -69,25 +67,23 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Gap(30),
                 CustomTextField(
-                    
                   controller: cubit.emailcontroller,
                   hint: "enter your email",
                   validator: (value) {
-                    if(value==null||value.isEmpty){
-                      return  "please enter your email";
+                    if (value == null || value.isEmpty) {
+                      return "please enter your email";
                     }
                     return null;
-                  }
+                  },
                 ),
                 Gap(12),
                 PasswordTextField(
-                  controller:cubit. passwordcontroller,
+                  controller: cubit.passwordcontroller,
                   hint: "enter your password",
-                
-                  
-                    validator: (value) {
-                    if(value==null||value.isEmpty){
-                      return  "please enter your password";
+
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "please enter your password";
                     }
                     return null;
                   },
@@ -106,13 +102,16 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-            
+
                 Gap(20),
-                MainButton(text: "login", onPressed: () {
-                  if(cubit.formkey.currentState!.validate()){
-                    cubit.login();
-                  }
-                }),
+                MainButton(
+                  text: "login",
+                  onPressed: () {
+                    if (cubit.formkey.currentState!.validate()) {
+                      cubit.login();
+                    }
+                  },
+                ),
                 Gap(20),
                 SocialLogin(),
               ],

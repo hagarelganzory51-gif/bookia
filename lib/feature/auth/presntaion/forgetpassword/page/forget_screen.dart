@@ -42,15 +42,15 @@ class ForgetScreen extends StatelessWidget {
   }
 
   Widget _buildForgetBody(BuildContext context) {
-    var cubit= context.read<AuthCubit>();
+    var cubit = context.read<AuthCubit>();
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-          if(state is AuthLoadingState){
+        if (state is AuthLoadingState) {
           showLoadingDialog(context);
-        }else if(state is AuthSuccesState){
+        } else if (state is AuthSuccesState) {
           pop(context);
-         log("succesful");
-        }else if(state is AuthErrorState){
+          log("succesful");
+        } else if (state is AuthErrorState) {
           pop(context);
           showErrorDialog(context, state.message);
         }
@@ -59,7 +59,7 @@ class ForgetScreen extends StatelessWidget {
         padding: const EdgeInsets.all(22),
         child: SingleChildScrollView(
           child: Form(
-           key:  cubit.formkey,
+            key: cubit.formkey,
             child: Column(
               children: [
                 Text("Forgot Password?", style: TextStyles.styleSize30()),
@@ -70,24 +70,24 @@ class ForgetScreen extends StatelessWidget {
                 ),
                 Gap(30),
                 CustomTextField(
-                  controller:cubit.emailcontroller,
+                  controller: cubit.emailcontroller,
                   hint: "enter your email",
                   validator: (value) {
-                    if(value==null||value.isEmpty){
-                      return  "please enter your email";
+                    if (value == null || value.isEmpty) {
+                      return "please enter your email";
                     }
                     return null;
-                  }
+                  },
                 ),
                 Gap(30),
-            
+
                 MainButton(
                   text: " send code",
                   onPressed: () {
                     pushTo(context, Routes.otp);
-                     if(cubit.formkey.currentState!.validate()){
-                    cubit.login();
-                  }
+                    if (cubit.formkey.currentState!.validate()) {
+                      cubit.login();
+                    }
                   },
                 ),
               ],

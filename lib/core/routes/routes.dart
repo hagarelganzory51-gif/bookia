@@ -21,6 +21,7 @@ class Routes {
   static const String newpassword = "/newpassword";
   static const String passwordchange = "/passwordchange";
   static const String main = "/main";
+  static const String details = '/details';
 
   static GoRouter routes = GoRouter(
     routes: [
@@ -69,8 +70,9 @@ class Routes {
         path: passwordchange,
         builder: (context, state) => const PasswordchangeScreen(),
       ),
-       GoRoute(path: main, builder: (context, state) => const MainAppScreen()),
-
+      GoRoute(path: main, builder: (context, state) => const MainAppScreen()),
+      
+      
     ],
   );
 }

@@ -14,5 +14,4 @@ class UserModel {
   );
 
   Map<String, dynamic> toJson() => {'user': user?.toJson(), 'token': token};
-
 }

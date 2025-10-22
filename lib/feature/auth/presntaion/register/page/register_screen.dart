@@ -43,11 +43,11 @@ class RegisterScreen extends StatelessWidget {
     var cubit = context.read<AuthCubit>();
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if(state is AuthLoadingState){
+        if (state is AuthLoadingState) {
           showLoadingDialog(context);
-        }else if(state is AuthSuccesState){
+        } else if (state is AuthSuccesState) {
           goToBase(context, Routes.main);
-        }else if(state is AuthErrorState){
+        } else if (state is AuthErrorState) {
           pop(context);
           showErrorDialog(context, state.message);
         }

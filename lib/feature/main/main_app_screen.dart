@@ -12,45 +12,37 @@ class MainAppScreen extends StatefulWidget {
 }
 
 class _MainAppScreenState extends State<MainAppScreen> {
-  int currentIndex= 0;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeScreem(),
+      body: HomeScreen(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex=index;
+            currentIndex = index;
           });
         },
-        type:BottomNavigationBarType.fixed,
-        items:[
-        _buildNavBaritem(
-          AppImages.homeSvg
-          ,"home"
-        ),
-        _buildNavBaritem(
-          AppImages.bookmarkSvg
-          ,"bookmark"
-        ),
-        _buildNavBaritem(
-          AppImages.cartSvg
-          ,"cart"
-        ),
-        _buildNavBaritem(
-          AppImages.profileSvg
-          ,"profile"
-        ),
-
-      ]),
+        type: BottomNavigationBarType.fixed,
+        items: [
+          _buildNavBaritem(AppImages.homeSvg, "home"),
+          _buildNavBaritem(AppImages.bookmarkSvg, "bookmark"),
+          _buildNavBaritem(AppImages.cartSvg, "cart"),
+          _buildNavBaritem(AppImages.profileSvg, "profile"),
+        ],
+      ),
     );
   }
 
-  BottomNavigationBarItem _buildNavBaritem(String iconpath,String label) {
+  BottomNavigationBarItem _buildNavBaritem(String iconpath, String label) {
     return BottomNavigationBarItem(
-          activeIcon: SvgPicture.asset(iconpath,
-          colorFilter: ColorFilter.mode(Appcolors.primarycolor, BlendMode.srcIn),),
-        icon:SvgPicture.asset(iconpath),label: label);
+      activeIcon: SvgPicture.asset(
+        iconpath,
+        colorFilter: ColorFilter.mode(Appcolors.primarycolor, BlendMode.srcIn),
+      ),
+      icon: SvgPicture.asset(iconpath),
+      label: label,
+    );
   }
 }

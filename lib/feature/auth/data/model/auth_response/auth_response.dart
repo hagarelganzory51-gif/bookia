@@ -23,6 +23,4 @@ class AuthResponse {
     'error': error,
     'status': status,
   };
-
-
 }

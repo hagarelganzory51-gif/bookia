@@ -17,14 +17,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    var userData=SharedPref.getUserData();
+    var userData = SharedPref.getUserData();
     Future.delayed(const Duration(seconds: 3), () {
-      if(userData!=null){
+      if (userData != null) {
         // ignore: use_build_context_synchronously
         pushWithReplacement(context, Routes.main);
-      }else{
-      // ignore: use_build_context_synchronously
-      pushWithReplacement(context, Routes.welcome);}
+      } else {
+        // ignore: use_build_context_synchronously
+        pushWithReplacement(context, Routes.welcome);
+      }
     });
     super.initState();
   }

@@ -17,10 +17,11 @@ class AppTheme {
       onSurface: Appcolors.blackcolor,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-       backgroundColor: Appcolors.accentcolor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,),
-  
+      backgroundColor: Appcolors.accentcolor,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    ),
+
     dividerTheme: DividerThemeData(color: Appcolors.bordercolor),
 
     inputDecorationTheme: InputDecorationTheme(

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioProvider.init();
-   await SharedPref.init();
+  await SharedPref.init();
   runApp(
     DevicePreview(enabled: kDebugMode, builder: (context) => const MainApp()),
   );
