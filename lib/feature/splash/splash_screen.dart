@@ -1,7 +1,7 @@
 import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/routes/navection.dart';
 import 'package:bookia/core/routes/routes.dart';
-import 'package:bookia/core/services/local/local_helper.dart';
+import 'package:bookia/core/services/local/shared_pref.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
