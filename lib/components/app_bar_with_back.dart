@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppBarWithBack extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWithBack({super.key});
+  const AppBarWithBack({super.key, this.action});
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class AppBarWithBack extends StatelessWidget implements PreferredSizeWidget {
         },
         child: SvgPicture.asset(AppImages.backSvg),
       ),
+      actions:[ action ??const SizedBox.shrink(),]
     );
   }
 

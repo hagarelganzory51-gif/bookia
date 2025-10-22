@@ -5,6 +5,8 @@ import 'package:bookia/feature/auth/presntaion/new%20password/page/newpassword_s
 import 'package:bookia/feature/auth/presntaion/otp/page/otp_screen.dart';
 import 'package:bookia/feature/auth/presntaion/password%20change/page/passwordchange_screen.dart';
 import 'package:bookia/feature/auth/presntaion/register/page/register_screen.dart';
+import 'package:bookia/feature/home/data/model/best_seller_response/product.dart';
+import 'package:bookia/feature/home/presentation/pages/detalis_screen.dart';
 import 'package:bookia/feature/main/main_app_screen.dart';
 import 'package:bookia/feature/splash/splash_screen.dart';
 import 'package:bookia/feature/welcome/welcome_csreen.dart';
@@ -71,8 +73,11 @@ class Routes {
         builder: (context, state) => const PasswordchangeScreen(),
       ),
       GoRoute(path: main, builder: (context, state) => const MainAppScreen()),
-      
-      
+
+            GoRoute(path: details, builder: (context, state) {
+              var book = state.extra as Product;
+              return  DetalisScreen(book: book);
+            }),
     ],
   );
 }
