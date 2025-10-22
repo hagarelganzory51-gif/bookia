@@ -1,3 +1,4 @@
+import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/feature/home/data/model/slider_response/slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -31,6 +32,13 @@ class _HomeSliderState extends State<HomeSlider> {
                     imageUrl: widget.sliders[itemIndex].image ?? "",
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    errorWidget: (context, error, stackTrace) {
+                      return Image.asset(
+                        AppImages.welcome,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      );
+                    },
                   ),
                 );
               },
