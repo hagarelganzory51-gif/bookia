@@ -1,21 +1,19 @@
-import 'package:bookia/core/routes/navection.dart';
-import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
-import 'package:bookia/feature/wishlist/data/models/whishlist_response/datum.dart';
+import 'package:bookia/feature/cart/data/models/cart_response/cart_item.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class WishlistCard extends StatelessWidget {
-  const WishlistCard({
+class CartCard extends StatelessWidget {
+  const CartCard({
     super.key,
     required this.book,
     required this.onDelete,
     required this.onRefresh,
   });
 
-  final WishlistProduct book;
+  final CartItem book;
   final Function() onDelete;
   final Function() onRefresh;
 
@@ -38,11 +36,11 @@ class WishlistCard extends StatelessWidget {
       },
       child: GestureDetector(
         onTap: () {
-          pushTo(context, Routes.details, extra: book.mapToProduct()).then((
-            value,
-          ) {
-            onRefresh();
-          });
+          // pushTo(context, Routes.details, extra: book.mapToProduct()).then((
+          //   value,
+          // ) {
+          //   onRefresh();
+          // });
         },
         child: Container(
           height: 140,
@@ -54,11 +52,11 @@ class WishlistCard extends StatelessWidget {
           child: Row(
             children: [
               Hero(
-                tag: book.id ?? '',
+                tag: book.itemProductId ?? '',
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
-                    imageUrl: book.image ?? '',
+                    imageUrl: book.itemProductImage ?? '',
                     height: 120,
                     width: 100,
                     fit: BoxFit.cover,
@@ -72,20 +70,15 @@ class WishlistCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      book.name ?? '',
+                      book.itemProductName ?? '',
                       style: TextStyles.styleSize18(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Gap(10),
-                    Text('\$${book.price}', style: TextStyles.styleSize16()),
+                    Text('\$${book.itemProductPrice}', style: TextStyles.styleSize16()),
                     Gap(10),
-                    Text(
-                      book.description ?? '',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyles.styleSize14(color: Appcolors.grycolor),
-                    ),
+                    
                   ],
                 ),
               ),
