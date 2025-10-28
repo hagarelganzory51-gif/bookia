@@ -43,6 +43,12 @@ class CartScreen extends StatelessWidget {
                       cartItemId: books[index].itemId?? 0,
                     );
                   },
+                  onupdate: (q){
+                    cubit.updateCart(
+                      cartItemId: books[index].itemId?? 0,
+                      quantity: q,
+                    );
+                  },
                   onRefresh: () {
                     cubit.getCart();
                   },

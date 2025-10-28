@@ -12,11 +12,14 @@ class CartCard extends StatelessWidget {
     required this.book,
     required this.onDelete,
     required this.onRefresh,
+    required this.onupdate,
   });
 
   final CartItem book;
   final Function() onDelete;
   final Function() onRefresh;
+  final Function(int) onupdate;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +83,8 @@ class CartCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             if ((book.itemQuantity?? 1) > 1) {
+                              int currentQuantity =( book.itemQuantity ??1) -1;
+                              onupdate(currentQuantity);
                               
                             }else{
                               showMyDialog(context ,"minimum quantity is 1");
@@ -87,7 +92,11 @@ class CartCard extends StatelessWidget {
                           },
                           child: GestureDetector(
                              onTap: () {
-                            if ((book.itemQuantity?? 1) <  (book.itemProductStock ??1) ) {
+                            if ((book.itemQuantity?? 1) < 
+                             (book.itemProductStock ??1) ) {
+                              int currentQuantity = (book.itemQuantity??1) +1;
+                              onupdate(currentQuantity);
+
                               
                             }else{
                               showMyDialog(context ,"out of stock");

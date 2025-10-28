@@ -33,4 +33,17 @@ class CartCubit extends Cubit<CartState> {
       emit(CartErrorState());
     }
   }
+  // ignore: strict_top_level_inference
+  updateCart({required int cartItemId,
+  required int quantity}) async {
+    
+    var res = await CartRepo.updatecart(cartItemId: cartItemId,
+    quantity: quantity);
+
+    if (res != null) {
+     cartResponse = res;
+      emit(CartSuccessState());
+    } else {
+      emit(CartErrorState());
+    }}
 }

@@ -64,4 +64,23 @@ class CartRepo {
       return null;
     }
   }
+  static Future<CartResponse?> updatecart({required int cartItemId,
+  required int quantity}) async {
+    try {
+      var res = await DioProvider.post(
+        endpoint: ApiEndpoint.updatecart,
+        data: {"cart_item_id": cartItemId, "quantity": quantity},
+        headers: {"Authorization": "Bearer ${SharedPref.getUserData()?.token}"},
+      );
+
+      if (res.statusCode == 201) {
+        var data = CartResponse.fromJson(res.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }}
 }
