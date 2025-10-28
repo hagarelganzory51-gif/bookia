@@ -1,4 +1,5 @@
 import 'package:bookia/core/services/local/shared_pref.dart';
+import 'package:bookia/feature/cart/data/repo/cart_repo.dart';
 import 'package:bookia/feature/home/data/model/best_seller_response/best_seller_response.dart';
 import 'package:bookia/feature/home/data/model/best_seller_response/product.dart';
 import 'package:bookia/feature/home/data/model/slider_response/slider.dart';
@@ -68,4 +69,16 @@ bool checkIfWishlist(int productId) {
 
     return cachedWishlist?.contains(productId) ?? false;
   }
+
+  // ignore: strict_top_level_inference
+  addToCart({required int productId}) async {
+    emit(HomeStateLoading());
+    
+      var res = await CartRepo.addTocart(productId: productId);
+      if (res != null) {
+        emit(HomeStateSucces(message: 'Added to cart'));
+      } else {
+        emit(HomeStateError(message: 'faild'));
+      }
+    } 
 }

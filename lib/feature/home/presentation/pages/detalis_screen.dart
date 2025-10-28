@@ -2,7 +2,6 @@ import 'package:bookia/components/app_bar_with_back.dart';
 import 'package:bookia/components/main_button.dart';
 import 'package:bookia/core/contants/app_images.dart';
 import 'package:bookia/core/function/dialogs.dart';
-import 'package:bookia/core/routes/navection.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:bookia/feature/home/data/model/best_seller_response/product.dart';
@@ -136,7 +135,9 @@ class DetailsScreen extends StatelessWidget {
                     child: MainButton(
                       bgcolor: Appcolors.blackcolor,
                       text: 'Add To Cart',
-                      onPressed: () {},
+                      onPressed: () {
+                        cubit.addToCart(productId: book.id ?? 0);
+                      },
                     ),
                   ),
                 ],
@@ -150,5 +151,5 @@ class DetailsScreen extends StatelessWidget {
 
 }
 
-}
+
 
