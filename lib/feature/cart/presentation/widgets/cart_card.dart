@@ -36,11 +36,7 @@ class CartCard extends StatelessWidget {
       },
       child: GestureDetector(
         onTap: () {
-          // pushTo(context, Routes.details, extra: book.mapToProduct()).then((
-          //   value,
-          // ) {
-          //   onRefresh();
-          // });
+          
         },
         child: Container(
           height: 140,
