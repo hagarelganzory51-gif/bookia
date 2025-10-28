@@ -1,3 +1,4 @@
+import 'package:bookia/core/function/dialogs.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:bookia/feature/cart/data/models/cart_response/cart_item.dart';
@@ -73,7 +74,54 @@ class CartCard extends StatelessWidget {
                     ),
                     Gap(10),
                     Text('\$${book.itemProductPrice}', style: TextStyles.styleSize16()),
-                    Gap(10),
+                    Gap(20),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if ((book.itemQuantity?? 1) > 1) {
+                              
+                            }else{
+                              showMyDialog(context ,"minimum quantity is 1");
+                            }
+                          },
+                          child: GestureDetector(
+                             onTap: () {
+                            if ((book.itemQuantity?? 1) <  (book.itemProductStock ??1) ) {
+                              
+                            }else{
+                              showMyDialog(context ,"out of stock");
+                            }
+                          },
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Appcolors.accentcolor,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Icon(  
+                                Icons.remove,
+                              
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(10),
+                        Text(book.itemQuantity.toString() ),
+                        Gap(10),
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Appcolors.accentcolor,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Icon(  
+                            Icons.add,
+                          
+                          ),
+                        )
+                      ],
+                    )
                     
                   ],
                 ),
