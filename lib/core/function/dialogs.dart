@@ -15,7 +15,7 @@ showMyDialog(
 
 enum DialogType { success, error,warning }
 
-// ignore: strict_top_level_inference
+// ignore: strict_top_level_inference, unused_element
 showMyDialog(BuildContext context,
  String message,{
   DialogType type = DialogType.error,}
@@ -33,8 +33,6 @@ showMyDialog(BuildContext context,
 
           ? Appcolors.primarycolor
           : Appcolors.cardcolor,
-              ? Appcolors.primarycolor
-              :Appcolors.cardcolor,
       content: Text(
         message,
         style: TextStyles.styleSize18(color: Appcolors.whitecolor),
@@ -43,7 +41,7 @@ showMyDialog(BuildContext context,
   );
 }
 
-// ignore: strict_top_level_inference
+// ignore: strict_top_level_inference, unused_element
 showLoadingDialog(BuildContext context) {
   showDialog(
     context: context,
