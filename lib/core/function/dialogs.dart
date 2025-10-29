@@ -10,7 +10,7 @@ showMyDialog(
   BuildContext context,
   String message, {
   DialogType type = DialogType.error,
-}) {
+}) 
 
 
 enum DialogType { success, error,warning }
